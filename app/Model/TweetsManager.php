@@ -11,7 +11,7 @@ class TweetsManager
 {
 	use Nette\SmartObject;
 
-	const MAX_RESULTS = 100;
+	const MAX_RESULTS = 10;
 
 	/** @var \DG\Twitter\Twitter */
 	private $twitter;
@@ -34,7 +34,7 @@ class TweetsManager
 
 	private function getMax() : int
 	{
-		return min(intval($this->request->getQuery('max') ?: $this::MAX_RESULTS), $this::MAX_RESULTS);
+		return intval($this->request->getQuery('max') ?: $this::MAX_RESULTS);
 	}
 
 	private function getQuery() : string
