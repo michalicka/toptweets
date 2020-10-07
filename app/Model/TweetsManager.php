@@ -11,7 +11,7 @@ class TweetsManager
 {
 	use Nette\SmartObject;
 
-	const MAX_RESULTS = 10;
+	const MAX_RESULTS = 100;
 
 	/** @var \DG\Twitter\Twitter */
 	private $twitter;
@@ -46,7 +46,7 @@ class TweetsManager
 	{
 		$result = $this->twitter->request('search/tweets', 'GET', $this->query);
 		$this->tweets = array_merge($this->tweets, $result->statuses ?: []);
-		return $this->getLastTweetId();
+		return count($result->statuses);
 	}
 
 	private function getLastTweetId(): int 
@@ -67,7 +67,7 @@ class TweetsManager
 		while (count($this->tweets) < $this->getMax()) {
 
 			$this->query['max_id'] = $this->getNextMaxId();
-			$this->loadNext();
+			if (!$this->loadNext()) break;
 
 		}
 

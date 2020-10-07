@@ -21,7 +21,9 @@ final class TweetsPresenter extends Nette\Application\UI\Presenter
 
 	public function renderDefault(): void
 	{
-		$this->template->posts = $this->tweetsManager->load()->getTemplateData();
+		$this->template->query = $this->getHttpRequest()->getQuery('q') ?: '';
+		$this->template->posts = $this->getHttpRequest()->getQuery('q') ? $this->tweetsManager->load()->getTemplateData() : [];
+		$this->template->count = count($this->template->posts);
 	}
 
 	public function renderJson(): void

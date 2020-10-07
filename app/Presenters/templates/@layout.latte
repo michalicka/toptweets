@@ -7,14 +7,14 @@
 	<title>{ifset title}{include title|stripHtml} | {/ifset} Web Client</title>
 	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
-	<div id="banner">
+	<div id="banner" class="flex justify-between items-center">
 		<h1 n:block=title>Top Tweets</h1>
+		{if $count}<h1 class="mr-6">#{$count}</h1>{/if}
 	</div>
 
 	{include content}
