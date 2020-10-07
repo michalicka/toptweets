@@ -12,18 +12,22 @@ Requirements
 Installation
 ------------
 
-The best way to install Web Project is using Composer. If you don't have Composer yet,
-download it following [the instructions](https://doc.nette.org/composer). Then use command:
+Download repository from GitHub:
 
-	composer create-project michalicka/toptweets path/to/install
-	cd path/to/install
+	git clone https://github.com/michalicka/toptweets.git
+
+
+The best way to install dependencies is using Composer. If you don't have Composer yet,
+download it following [the instructions](https://doc.nette.org/composer). Then use commands:
+
+	cd toptweets
+	composer install
 
 
 Make directories `temp/` and `log/` writable.
 
-Update `app/config/local.neon` and add your Twitter API credentials. 
-Sign-up to [Twitter Developer account](https://developer.twitter.com/) and create a new APP to get them. 
-Then add and update following lines in your `app/config/local.neon` file:
+Sign-up to [Twitter Developer account](https://developer.twitter.com/) and create a new APP to get Twitter API credentials. 
+Create `app/config/local.neon` file and add there following lines:
 
 ```php
 parameters:
